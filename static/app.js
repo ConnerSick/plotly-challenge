@@ -93,3 +93,6 @@ function buildCharts(sample) {
 // }
   
 // dataSelector();
+
+
+buildCharts()
