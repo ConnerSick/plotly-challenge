@@ -13,4 +13,3 @@ function doSomething(sample) {
 }
 
 
-console.log(testVar[0])
