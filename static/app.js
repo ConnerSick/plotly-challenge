@@ -1,15 +1,10 @@
-testData = jsonData
-
-
-
-
-
+var testData = jsonData
 
 
 
 function buildMetadata(sample) {
-    d3.json("../samples.json").then((data) => {
-      var metadata = data.metadata;
+    ((testData) => {
+      var metadata = testData.metadata;
       var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
       var result = resultArray[0];
       var metadataSelect = d3.select("#sample-metadata");
@@ -23,8 +18,8 @@ function buildMetadata(sample) {
 }
   
 function buildCharts(sample) {
-    d3.json("../samples.json").then((data) => {
-      var samples = data.samples;
+    ((testData) => {
+      var samples = testData.samples;
       var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
       var result = resultArray[0];
       
