@@ -70,11 +70,9 @@ function buildCharts(sample) {
 };
 
 
-
 function dataSelector(sample) {
     var dropdownSelector = d3.select("#selDataset");
   
-
       var sampleNames = testData.names;
   
       sampleNames.forEach((sample) => {
