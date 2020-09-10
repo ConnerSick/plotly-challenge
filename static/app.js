@@ -3,7 +3,7 @@ var testData = jsonData
 
 
 function buildMetadata(sample) {
-    ((testData) => {
+
       var metadata = testData.metadata;
       var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
       var result = resultArray[0];
@@ -14,11 +14,11 @@ function buildMetadata(sample) {
       Object.entries(result).forEach(([key, value]) => {
         metadataSelect.append("h6").text(`${key.toUpperCase()}: ${value}`);
       });
-    });
-}
+};
+
   
 function buildCharts(sample) {
-    ((testData) => {
+
       var samples = testData.samples;
       var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
       var result = resultArray[0];
@@ -67,34 +67,32 @@ function buildCharts(sample) {
       ];
   
       Plotly.newPlot("bubble", bubbleData, bubbleLayout);
-    });
+};
+
+
+
+function dataSelector(sample) {
+    var dropdownSelector = d3.select("#selDataset");
+  
+
+      var sampleNames = testData.names;
+  
+      sampleNames.forEach((sample) => {
+        dropdownSelector
+          .append("option")
+          .text(sample)
+          .property("value", sample);
+      });
+  
+      var firstSample = sampleNames[0];
+      buildCharts(firstSample);
+      buildMetadata(firstSample);
+};
+
+  
+function optionChanged(newSample) {
+    buildCharts(newSample);
+    buildMetadata(newSample);
 }
-
-
-// function dataSelector(sample) {
-//     var dropdownSelector = d3.select("#selDataset");
   
-//     d3.json("../samples.json").then((data) => {
-//       var sampleNames = data.names;
-  
-//       sampleNames.forEach((sample) => {
-//         dropdownSelector
-//           .append("option")
-//           .text(sample)
-//           .property("value", sample);
-//       });
-  
-//       var firstSample = sampleNames[0];
-//       buildCharts(firstSample);
-//       buildMetadata(firstSample);
-//     });
-// }
-  
-// function optionChanged(newSample) {
-//     buildCharts(newSample);
-//     buildMetadata(newSample);
-// }
-  
-// dataSelector();
-
-
+dataSelector();
